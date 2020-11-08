@@ -1,0 +1,28 @@
+
+
+{% extends 'base.html' %}
+
+{% block container %}
+
+{% set destination = destination.split(' ') %}
+<main class="container mt-3">
+  <h1 class="display-5 mt-4">Летим {{ destination[0]|lower }} {{ destination[1] }}</h1>
+  <p class="mb-4">Найдено {{ departure_data|length }} туров, от {{ departure_data.values()|map(attribute='price')|min }} до {{ departure_data.values()|map(attribute='price')|max }} и от {{ departure_data.values()|map(attribute='nights')|min }} ночей до {{ departure_data.values()|map(attribute='nights')|max }} ночей</p>
+  <!-- CARDS -->
+  <div class="row mt-5">
+    {% for tour_id, tour in departure_data.items() %}
+    <div class="col-4">
+      <div class="card mb-4">
+        <img src="https://place-hold.it/300x200" class="card-img-top img-fluid" alt="">
+        <div class="card-body">
+          <h2 class="h5 card-title">{{ tour.title }}</h2>
+          <p class="card-text">{{ tour.description }}</p>
+          <a href="/tours/{{ tour_id }}" class="btn btn-sm btn-primary">Подробнее</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</main>
+
+{% endblock %}
