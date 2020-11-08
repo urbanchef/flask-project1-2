@@ -46,6 +46,6 @@ def departure_data(departure):
     return render_template("departure_data.html", departure_data=tours_by_departure, destination=data.departures.get(departure))
 
 
-app.run()
-
+if __name__ == "__main__":
+    app.run()
 
